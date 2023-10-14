@@ -1,0 +1,27 @@
+.LeftSideBar {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  box-sizing: border-box;
+  gap: 10px;
+  cursor: pointer;
+}
+.LeftSideBar h3 {
+  text-decoration: none;
+  color: #5f6368;
+  font-size: 22px;
+}
+.signout-btn {
+  font-weight: bold;
+  color: #0056b3;
+  padding: 10px 6px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.signout-btn:hover {
+  color: #fff;
+  background: #0056b3;
+  scale: 1.2;
+}

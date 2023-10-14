@@ -1,0 +1,23 @@
+.navbar-right-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navbar-right-side span {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  padding: 11px;
+  cursor: pointer;
+}
+.navbar-right-side span:hover {
+  transition: all 1 ease-in-out;
+  background-color: #f0f0f0;
+}
+.signout-btn {
+  padding: 10px 4px;
+}
