@@ -13,7 +13,7 @@ const LeftSideBar = () => {
           title='Main Menu'
           alt='hamburger-icon-svg'
         />
-        <Logo til='keep' />
+        <Logo />
         <h3>Keep</h3>
       </div>
     </>

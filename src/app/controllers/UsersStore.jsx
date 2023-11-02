@@ -49,16 +49,13 @@ const UsersStore = ({ children }) => {
         setCards(notes);
       });
     }
-  }, [user]);
-
-  useEffect(() => {
     if (user.role === 'admin') {
       const q = query(collection(db, 'cards'));
       onSnapshot(q, (querySnapshot) => {
         const notes = [];
         querySnapshot.forEach((doc) => {
           notes.push({ ...doc.data(), id: doc.id });
-          console.log(user);
+          // console.log(user);
         });
         setCards(notes);
       });

@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import LogoImg from './img/keeplogo.png';
 
-const Logo = (til) => {
+const Logo = () => {
   return (
     <>
       <div>
@@ -10,7 +10,6 @@ const Logo = (til) => {
           src={LogoImg}
           width={40}
           height={40}
-          title={til}
           alt='logo_image'
           priority={true}
         />

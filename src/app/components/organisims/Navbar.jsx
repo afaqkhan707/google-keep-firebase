@@ -4,7 +4,7 @@ import NavbarRightSide from '../molecules/NavbarRightSide';
 import SearchInput from '../atoms/SearchInput';
 // import { onAuthStateChanged, auth } from '../../firebase/firebaseConfig';
 import { usersContext } from '../../controllers/UsersStore';
-// import LeftSideBar from '../molecules/LeftSideBar';
+import LeftSideBar from '../molecules/LeftSideBar';
 
 const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <>
       <nav className='navbar'>
-        {/* <LeftSideBar /> */}
+        <LeftSideBar />
         <SearchInput />
         <NavbarRightSide isAuthenticated={isAuthenticated} />
       </nav>
