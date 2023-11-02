@@ -35,24 +35,24 @@ const UsersStore = ({ children }) => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     const q = query(
-  //       collection(db, 'cards'),
-  //       where('ownerId', '==', user.userId)
-  //     );
-  //     onSnapshot(q, (querySnapshot) => {
-  //       const notes = [];
-  //       querySnapshot.forEach((doc) => {
-  //         notes.push({ ...doc.data(), id: doc.id });
-  //       });
-  //       setCards(notes);
-  //     });
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user) {
+      const q = query(
+        collection(db, 'cards'),
+        where('ownerId', '==', user.userId)
+      );
+      onSnapshot(q, (querySnapshot) => {
+        const notes = [];
+        querySnapshot.forEach((doc) => {
+          notes.push({ ...doc.data(), id: doc.id });
+        });
+        setCards(notes);
+      });
+    }
+  }, [user]);
 
   useEffect(() => {
-    if (user === 'hello@gmail.com') {
+    if (user.role === 'admin') {
       const q = query(collection(db, 'cards'));
       onSnapshot(q, (querySnapshot) => {
         const notes = [];
