@@ -1,6 +1,6 @@
 import hamburgerIcon from '../atoms/img/hamburgerIcon.svg';
 import HeaderIcon from '../atoms/HeaderIcon';
-import Link from 'next/link';
+// import Link from 'next/link';
 import './LeftSideBar.css';
 import Logo from '../atoms/Logo';
 

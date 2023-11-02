@@ -22,10 +22,10 @@ const UsersStore = ({ children }) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         onSnapshot(doc(db, 'users', user.uid), (doc) => {
-          console.log(user.uid);
+          // console.log(user.uid);
           if (doc.exists) {
             const data = { ...doc.data(), userId: user.uid };
-            console.log(data);
+            // console.log(data);
             setUser(data);
           }
         });
@@ -35,16 +35,30 @@ const UsersStore = ({ children }) => {
     });
   }, []);
 
+  // useEffect(() => {
+  //   if (user) {
+  //     const q = query(
+  //       collection(db, 'cards'),
+  //       where('ownerId', '==', user.userId)
+  //     );
+  //     onSnapshot(q, (querySnapshot) => {
+  //       const notes = [];
+  //       querySnapshot.forEach((doc) => {
+  //         notes.push({ ...doc.data(), id: doc.id });
+  //       });
+  //       setCards(notes);
+  //     });
+  //   }
+  // }, [user]);
+
   useEffect(() => {
-    if (user) {
-      const q = query(
-        collection(db, 'cards'),
-        where('ownerId', '==', user.userId)
-      );
+    if (user === 'hello@gmail.com') {
+      const q = query(collection(db, 'cards'));
       onSnapshot(q, (querySnapshot) => {
         const notes = [];
         querySnapshot.forEach((doc) => {
           notes.push({ ...doc.data(), id: doc.id });
+          console.log(user);
         });
         setCards(notes);
       });

@@ -134,27 +134,25 @@ const Note = () => {
       </form>
       {cards.length > 0 && (
         <div className='card'>
-          {cards
-            .filter((item) => item.ownerId === user.userId)
-            .map((item, index) => (
-              <div key={index} className='output'>
-                <h4>{item.title}</h4>
-                <p>{item.description}</p>
-                <div className='taken-note-icons'>
-                  <NoteIcons icon={addIcon} alttxt='addIcon-svg' />
-                  <NoteIcons icon={personaddIcon} alttxt='personaddIcon-svg' />
-                  <NoteIcons icon={paintIcon} alttxt='paintIcon-svg' />
-                  <NoteIcons icon={imgIcon} alttxt='imgIcon-svg' />
-                  <NoteIcons icon={archiveThinIcon} alttxt='archiveIcon-svg' />
-                  <NoteIcons icon={moreIcon} alttxt='moreIcon-svg' />
-                  <NoteIcons
-                    icon={deleteNoteIcon}
-                    alttxt='deleteNoteIcon'
-                    onClick={() => handleDeleteCard(item.id)}
-                  />
-                </div>
+          {cards.map((item, index) => (
+            <div key={index} className='output'>
+              <h4>{item.title}</h4>
+              <p>{item.description}</p>
+              <div className='taken-note-icons'>
+                <NoteIcons icon={addIcon} alttxt='addIcon-svg' />
+                <NoteIcons icon={personaddIcon} alttxt='personaddIcon-svg' />
+                <NoteIcons icon={paintIcon} alttxt='paintIcon-svg' />
+                <NoteIcons icon={imgIcon} alttxt='imgIcon-svg' />
+                <NoteIcons icon={archiveThinIcon} alttxt='archiveIcon-svg' />
+                <NoteIcons icon={moreIcon} alttxt='moreIcon-svg' />
+                <NoteIcons
+                  icon={deleteNoteIcon}
+                  alttxt='deleteNoteIcon'
+                  onClick={() => handleDeleteCard(item.id)}
+                />
               </div>
-            ))}
+            </div>
+          ))}
         </div>
       )}
     </>
