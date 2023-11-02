@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import './signupForm.css';
 import Link from 'next/link';
@@ -49,7 +50,7 @@ function SigninForm() {
         <button type='submit'>Sign In</button>
       </form>
       <div className='account-link'>
-        <p className='text'>Don't have an account?</p>
+        <p className='text'> Don't have an account?</p>
         <Link href={'/signup'}>Signup</Link>
       </div>
     </div>
