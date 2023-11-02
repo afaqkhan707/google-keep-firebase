@@ -22,7 +22,7 @@ const UsersStore = ({ children }) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         onSnapshot(doc(db, 'users', user.uid), (doc) => {
-          // console.log(user.uid);
+          console.log(user.uid);
           if (doc.exists) {
             const data = { ...doc.data(), userId: user.uid };
             // console.log(data);

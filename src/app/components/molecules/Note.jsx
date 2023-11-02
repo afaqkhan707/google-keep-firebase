@@ -26,6 +26,7 @@ import {
 import { TotalContext } from '@/app/controllers/TodoListStore';
 import { usersContext } from '../../controllers/UsersStore';
 import { useRouter } from 'next/router';
+import EditNoteForm from './EditNote';
 const Note = () => {
   const router = useRouter();
   const { user, cards } = useContext(usersContext);
@@ -33,6 +34,7 @@ const Note = () => {
   const { notesList, setNotesList } = useContext(TotalContext);
   const [formData, setFormData] = useState({ title: '', description: '' });
   const [showContent, setShowContent] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -66,7 +68,14 @@ const Note = () => {
   const handleHideContent = () => {
     setShowContent(false);
   };
+  const handleEdit = ({ note }) => {
+    setIsEditing(true);
+  };
+  const handleSave = (formData) => {
+    setFormData(formData);
 
+    setIsEditing(false);
+  };
   return (
     <>
       <form className='note'>
@@ -138,6 +147,10 @@ const Note = () => {
             <div key={index} className='output'>
               <h4>{item.title}</h4>
               <p>{item.description}</p>
+              <button type='button' onClick={handleEdit}>
+                Edit
+              </button>
+              {isEditing && <EditNoteForm note={Note} onSave={handleSave} />}
               <div className='taken-note-icons'>
                 <NoteIcons icon={addIcon} alttxt='addIcon-svg' />
                 <NoteIcons icon={personaddIcon} alttxt='personaddIcon-svg' />
