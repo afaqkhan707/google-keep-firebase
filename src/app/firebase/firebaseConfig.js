@@ -9,6 +9,9 @@ import {
   doc,
   collection,
   getDocs,
+  query,
+  where,
+  deleteDoc,
 } from 'firebase/firestore';
 import {
   getAuth,
@@ -30,8 +33,11 @@ export {
   doc,
   collection,
   getDocs,
+  where,
   auth,
+  query,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  deleteDoc,
 };

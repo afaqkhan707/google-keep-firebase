@@ -5,9 +5,6 @@ import { useRouter } from 'next/router';
 import {
   auth,
   signInWithEmailAndPassword,
-  setDoc,
-  doc,
-  db,
 } from '../../firebase/firebaseConfig';
 
 function SigninForm() {

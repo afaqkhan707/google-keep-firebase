@@ -14,9 +14,7 @@ const LeftSideBar = () => {
           alt='hamburger-icon-svg'
         />
         <Logo til='keep' />
-        <Link href={'/'}>
-          <h3>Keep</h3>
-        </Link>
+        <h3>Keep</h3>
       </div>
     </>
   );

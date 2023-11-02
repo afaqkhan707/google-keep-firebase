@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import ProfileDropDown from '../atoms/ProfileDropDown';
 import './NavbarRightSide.css';
 import Link from 'next/link';
-import { usersContext } from '@/app/controllers/UsersStore';
+import { usersContext } from '@/app/controllers/UsersStore.jsx';
 
 const NavbarRightSide = () => {
   const todoStore = useContext(TotalContext);
@@ -23,7 +23,7 @@ const NavbarRightSide = () => {
     if (user) {
       console.log(user.email, 'is Logged In');
     }
-  }, []);
+  }, [user]);
   const router = useRouter();
 
   const handleSignOut = async () => {

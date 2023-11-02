@@ -25,10 +25,7 @@ function SignupForm() {
 
   const InputChange = (event) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const Submit = async (event) => {
@@ -41,10 +38,11 @@ function SignupForm() {
         formData.email,
         formData.password
       );
-      router.push('/');
+
       const user = userCredential.user;
-      console.log(user);
       await setDoc(doc(db, 'users', user.uid), formData);
+
+      router.push('/');
     } catch (err) {
       console.log(err.code);
     }

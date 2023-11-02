@@ -16,18 +16,23 @@ import NoteBigIcon from '../atoms/NoteBigIcon';
 import penIcon from '../atoms/img/penIcon.svg';
 import imageIcon from '../atoms/img/imgIcon.svg';
 import checkBoxIcon from '../atoms/img/checkBoxIcon.svg';
+import {
+  db,
+  addDoc,
+  collection,
+  doc,
+  deleteDoc,
+} from '../../firebase/firebaseConfig';
 import { TotalContext } from '@/app/controllers/TodoListStore';
-
+import { usersContext } from '../../controllers/UsersStore';
+import { useRouter } from 'next/router';
 const Note = () => {
+  const router = useRouter();
+  const { user, cards } = useContext(usersContext);
+
   const { notesList, setNotesList } = useContext(TotalContext);
   const [formData, setFormData] = useState({ title: '', description: '' });
-
-  const [showContent, setShowContetent] = useState(false);
-
-  useEffect(() => {
-    const storedDataArray = JSON.parse(localStorage.getItem('cardData')) || [];
-    setNotesList(storedDataArray);
-  }, []);
+  const [showContent, setShowContent] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,25 +42,29 @@ const Note = () => {
   const handleAddCard = (event) => {
     if (formData.title.length && formData.description.length) {
       event.preventDefault();
-      const updatedFormDataArray = [...notesList, formData];
-      setNotesList(updatedFormDataArray);
-      localStorage.setItem('cardData', JSON.stringify(updatedFormDataArray));
       setFormData({ title: '', description: '' });
+
+      if (user) {
+        addDoc(collection(db, 'cards'), { ...formData, ownerId: user.userId });
+        return;
+      } else {
+        alert('Please Log In First');
+        router.push('signin');
+      }
     }
+    setFormData({ title: '', description: '' });
   };
 
-  const handleDeleteCard = (index) => {
-    const updatedFormDataArray = notesList.filter((e, i) => i != index);
-    setNotesList(updatedFormDataArray);
-    localStorage.setItem('cardData', JSON.stringify(updatedFormDataArray));
+  const handleDeleteCard = async (id) => {
+    await deleteDoc(doc(db, 'cards', id));
   };
 
   const handleShowContent = () => {
-    setShowContetent(true);
+    setShowContent(true);
   };
 
   const handleHideContent = () => {
-    setShowContetent(false);
+    setShowContent(false);
   };
 
   return (
@@ -123,27 +132,29 @@ const Note = () => {
           )}
         </div>
       </form>
-      {notesList.length > 0 && (
+      {cards.length > 0 && (
         <div className='card'>
-          {notesList.map((item, index) => (
-            <div key={index} className='output'>
-              <h4>{item.title}</h4>
-              <p>{item.description}</p>
-              <div className='taken-note-icons'>
-                <NoteIcons icon={addIcon} alttxt='addIcon-svg' />
-                <NoteIcons icon={personaddIcon} alttxt='personaddIcon-svg' />
-                <NoteIcons icon={paintIcon} alttxt='paintIcon-svg' />
-                <NoteIcons icon={imgIcon} alttxt='imgIcon-svg' />
-                <NoteIcons icon={archiveThinIcon} alttxt='archiveIcon-svg' />
-                <NoteIcons icon={moreIcon} alttxt='moreIcon-svg' />
-                <NoteIcons
-                  icon={deleteNoteIcon}
-                  alttxt='deleteNoteIcon'
-                  onClick={() => handleDeleteCard(index)}
-                />
+          {cards
+            .filter((item) => item.ownerId === user.userId)
+            .map((item, index) => (
+              <div key={index} className='output'>
+                <h4>{item.title}</h4>
+                <p>{item.description}</p>
+                <div className='taken-note-icons'>
+                  <NoteIcons icon={addIcon} alttxt='addIcon-svg' />
+                  <NoteIcons icon={personaddIcon} alttxt='personaddIcon-svg' />
+                  <NoteIcons icon={paintIcon} alttxt='paintIcon-svg' />
+                  <NoteIcons icon={imgIcon} alttxt='imgIcon-svg' />
+                  <NoteIcons icon={archiveThinIcon} alttxt='archiveIcon-svg' />
+                  <NoteIcons icon={moreIcon} alttxt='moreIcon-svg' />
+                  <NoteIcons
+                    icon={deleteNoteIcon}
+                    alttxt='deleteNoteIcon'
+                    onClick={() => handleDeleteCard(item.id)}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       )}
     </>
