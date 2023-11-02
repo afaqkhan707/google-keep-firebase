@@ -1,10 +1,9 @@
 import hamburgerIcon from '../atoms/img/hamburgerIcon.svg';
 import HeaderIcon from '../atoms/HeaderIcon';
-// import Link from 'next/link';
 import './LeftSideBar.css';
 import Logo from '../atoms/Logo';
 
-const LeftSideBar = () => {
+const LeftNav = () => {
   return (
     <>
       <div className='LeftSideBar'>
@@ -20,4 +19,4 @@ const LeftSideBar = () => {
   );
 };
 
-export default LeftSideBar;
+export default LeftNav;
