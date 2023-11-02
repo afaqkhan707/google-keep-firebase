@@ -1,6 +1,6 @@
 import hamburgerIcon from '../atoms/img/hamburgerIcon.svg';
 import HeaderIcon from '../atoms/HeaderIcon';
-import './LeftSideBar.css';
+import './LeftNav.css';
 import Logo from '../atoms/Logo';
 
 const LeftNav = () => {
