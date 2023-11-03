@@ -12,6 +12,7 @@ import {
   query,
   where,
   deleteDoc,
+  updateDoc,
 } from 'firebase/firestore';
 import {
   getAuth,
@@ -40,4 +41,5 @@ export {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   deleteDoc,
+  updateDoc,
 };

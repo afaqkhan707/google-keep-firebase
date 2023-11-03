@@ -30,7 +30,7 @@ function SignupForm() {
 
   const Submit = async (event) => {
     event.preventDefault();
-    console.log(formData.email, formData.password);
+    // console.log(formData.email, formData.password);
 
     try {
       const userCredential = await createUserWithEmailAndPassword(

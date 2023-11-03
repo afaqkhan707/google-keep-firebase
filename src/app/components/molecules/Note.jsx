@@ -22,19 +22,16 @@ import {
   collection,
   doc,
   deleteDoc,
+  updateDoc,
 } from '../../firebase/firebaseConfig';
-import { TotalContext } from '@/app/controllers/TodoListStore';
 import { usersContext } from '../../controllers/UsersStore';
 import { useRouter } from 'next/router';
-import EditNoteForm from './EditNote';
+
 const Note = () => {
   const router = useRouter();
   const { user, cards } = useContext(usersContext);
-
-  const { notesList, setNotesList } = useContext(TotalContext);
   const [formData, setFormData] = useState({ title: '', description: '' });
   const [showContent, setShowContent] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,14 +65,26 @@ const Note = () => {
   const handleHideContent = () => {
     setShowContent(false);
   };
-  const handleEdit = ({ note }) => {
-    setIsEditing(true);
-  };
-  const handleSave = (formData) => {
-    setFormData(formData);
+  const [editingCard, setEditingCard] = useState(null);
 
-    setIsEditing(false);
+  const handleEdit = (card) => {
+    setEditingCard(card);
   };
+  const handleSave = async () => {
+    if (editingCard) {
+      const updatedNote = {
+        // id: editingCard.id,
+        title: formData.title,
+        description: formData.description,
+      };
+
+      await updateDoc(doc(db, 'cards', editingCard.id), updatedNote);
+
+      setEditingCard(null);
+      setFormData({ title: '', description: '' });
+    }
+  };
+
   return (
     <>
       <form className='note'>
@@ -147,10 +156,9 @@ const Note = () => {
             <div key={index} className='output'>
               <h4>{item.title}</h4>
               <p>{item.description}</p>
-              <button type='button' onClick={handleEdit}>
+              <button type='button' onClick={() => handleEdit(item)}>
                 Edit
               </button>
-              {isEditing && <EditNoteForm note={Note} onSave={handleSave} />}
               <div className='taken-note-icons'>
                 <NoteIcons icon={addIcon} alttxt='addIcon-svg' />
                 <NoteIcons icon={personaddIcon} alttxt='personaddIcon-svg' />
@@ -166,6 +174,26 @@ const Note = () => {
               </div>
             </div>
           ))}
+        </div>
+      )}
+      {/* Edit form */}
+      {editingCard && (
+        <div className='edit-form'>
+          <input
+            name='title'
+            type='text'
+            onChange={handleChange}
+            value={formData.title}
+            placeholder='Title'
+          />
+          <input
+            name='description'
+            type='text'
+            onChange={handleChange}
+            value={formData.description}
+            placeholder='Description'
+          />
+          <button onClick={handleSave}>Save</button>
         </div>
       )}
     </>

@@ -18,10 +18,10 @@ function SigninForm() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log('Authenticated');
+      // console.log('Authenticated');
       router.push('/');
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 

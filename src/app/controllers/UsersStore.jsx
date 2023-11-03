@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import {
   onAuthStateChanged,
   auth,
@@ -17,12 +17,13 @@ export const usersContext = createContext();
 const UsersStore = ({ children }) => {
   const [user, setUser] = useState('');
   const [cards, setCards] = useState([]);
+  const [notesList, setNotesList] = useState(0);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         onSnapshot(doc(db, 'users', user.uid), (doc) => {
-          console.log(user.uid);
+          // console.log(user.uid);
           if (doc.exists) {
             const data = { ...doc.data(), userId: user.uid };
             // console.log(data);
@@ -47,6 +48,7 @@ const UsersStore = ({ children }) => {
           notes.push({ ...doc.data(), id: doc.id });
         });
         setCards(notes);
+        setNotesList(cards.length);
       });
     }
     if (user.role === 'admin') {
@@ -58,9 +60,10 @@ const UsersStore = ({ children }) => {
           // console.log(user);
         });
         setCards(notes);
+        setNotesList(cards.length);
       });
     }
-  }, [user]);
+  }, [cards, user]);
 
   return (
     <usersContext.Provider value={{ user, setUser, cards }}>
