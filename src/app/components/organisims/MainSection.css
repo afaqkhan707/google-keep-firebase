@@ -1,5 +1,20 @@
 .main-section {
   display: grid;
   grid-template-columns: 1fr 5fr;
-    gap: 10px;
+  gap: 10px;
+  overflow-y: scroll;
+  height: auto;
+ 
+}
+/* .main-sub-section {
+} */
+.main-section::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background-color: #f0f2f5;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #b3b7b9;
+  border-radius: 20px;
 }

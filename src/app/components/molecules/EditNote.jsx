@@ -1,4 +1,3 @@
-// EditNoteForm.js
 import React, { useState } from 'react';
 
 const EditNoteForm = ({ note }) => {
@@ -13,8 +12,6 @@ const EditNoteForm = ({ note }) => {
   };
 
   const handleSave = async () => {
-    // Update the note in your database
-    // ...
   };
 
   return (
