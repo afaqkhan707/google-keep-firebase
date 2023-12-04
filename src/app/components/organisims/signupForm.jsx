@@ -57,60 +57,62 @@ function SignupForm() {
   }, [formData.password, formData.confirmPassword]);
 
   return (
-    <div className='signup-container'>
-      <h2>Sign Up</h2>
-      <form onSubmit={Submit}>
-        <label htmlFor='username'>Username:</label>
-        <input
-          type='text'
-          id='username'
-          value={formData.username}
-          name='username'
-          onChange={InputChange}
-          required
-        />
+    <div className='page'>
+      <div className='signup-container'>
+        <h2>Sign Up</h2>
+        <form onSubmit={Submit}>
+          <label htmlFor='username'>Username:</label>
+          <input
+            type='text'
+            id='username'
+            value={formData.username}
+            name='username'
+            onChange={InputChange}
+            required
+          />
 
-        <label htmlFor='email'>Email:</label>
-        <input
-          type='email'
-          id='email'
-          value={formData.email}
-          name='email'
-          onChange={InputChange}
-          required
-        />
+          <label htmlFor='email'>Email:</label>
+          <input
+            type='email'
+            id='email'
+            value={formData.email}
+            name='email'
+            onChange={InputChange}
+            required
+          />
 
-        <label htmlFor='password'>Password:</label>
-        <input
-          type='password'
-          id='password'
-          value={formData.password}
-          name='password'
-          onChange={InputChange}
-          required
-        />
+          <label htmlFor='password'>Password:</label>
+          <input
+            type='password'
+            id='password'
+            value={formData.password}
+            name='password'
+            onChange={InputChange}
+            required
+          />
 
-        <label htmlFor='password'>Confirm Password:</label>
-        <input
-          type='password'
-          id='cpassword'
-          value={formData.confirmPassword}
-          name='confirmPassword'
-          onChange={InputChange}
-          required
-        />
-        {passwordCheckerEnable && (
-          <p style={passwordChecker ? { color: 'green' } : { color: 'red' }}>
-            {passwordChecker ? 'Match' : 'Not Match'}
-          </p>
-        )}
-        <button type='submit'>Sign Up</button>
+          <label htmlFor='password'>Confirm Password:</label>
+          <input
+            type='password'
+            id='cpassword'
+            value={formData.confirmPassword}
+            name='confirmPassword'
+            onChange={InputChange}
+            required
+          />
+          {passwordCheckerEnable && (
+            <p style={passwordChecker ? { color: 'green' } : { color: 'red' }}>
+              {passwordChecker ? 'Match' : 'Not Match'}
+            </p>
+          )}
+          <button type='submit'>Sign Up</button>
 
-        <div className='account-link'>
-          <p className='text'>Already have an account?</p>
-          <Link href={'/signin'}>Login</Link>
-        </div>
-      </form>
+          <div className='account-link'>
+            <p className='text'>Already have an account?</p>
+            <Link href={'/signin'}>Login</Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

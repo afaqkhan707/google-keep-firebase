@@ -18,6 +18,17 @@
   transition: all 1 ease-in-out;
   background-color: #f0f0f0;
 }
-.signout-btn {
-  padding: 10px 4px;
+.btns {
+  padding: 8px 16px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.btns:hover {
+  background-color: #f0f0f0;
+  border-radius: 25px;
+}
+.btns a {
+  color: #333;
+  text-decoration: none;
 }

@@ -14,18 +14,11 @@ import { usersContext } from '@/app/controllers/UsersStore.jsx';
 
 const NavbarRightSide = () => {
   const { user, notesList } = useContext(usersContext);
-  // const [isAuthenticated, setisAuthenticated] = useState(false);
-  // useEffect(() => {
-  //   if (user) {
-  //     console.log(user.email, 'is Logged In');
-  //   }
-  // }, [user]);
   const router = useRouter();
 
   const handleSignOut = async () => {
     try {
       await auth.signOut();
-      // console.log(user.email, 'is Logged out');
       router.push('/signin');
     } catch (error) {
       alert('Error signing out:', error);
@@ -39,7 +32,7 @@ const NavbarRightSide = () => {
   return (
     <>
       <div className='navbar-right-side'>
-        <span>{notesList}</span>
+        <span>{user?.notesList}</span>
         <HeaderIcon
           icon={refreshIcon}
           title='Refresh'
@@ -55,13 +48,13 @@ const NavbarRightSide = () => {
         <HeaderIcon icon={appsIcon} title='apps' alt='apps-icon-svg' />
         <ProfileDropDown />
         {user ? (
-          <button onClick={handleSignOut} className='signout-btn'>
+          <button onClick={handleSignOut} className='btns'>
             Log out
           </button>
         ) : (
-          <button className='signout-btn'>
-            <Link href={'signin'}> Log In</Link>
-          </button>
+          <Link href={'signin'}>
+            <button className='btns'>Log In</button>
+          </Link>
         )}
       </div>
     </>

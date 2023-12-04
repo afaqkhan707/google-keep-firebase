@@ -1,8 +1,15 @@
+import Head from 'next/head';
 import SigninForm from '@/app/components/organisims/signinForm';
-import React from 'react';
 
-function Signup() {
-  return <SigninForm />;
+function signin() {
+  return (
+    <>
+      <Head>
+        <title>SignIn</title>
+      </Head>
+      <SigninForm />
+    </>
+  );
 }
 
-export default Signup;
+export default signin;

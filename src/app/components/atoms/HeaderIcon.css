@@ -12,11 +12,10 @@
 }
 .icon-box:hover {
   background-color: #f0f0f0;
-
 }
 .icon-box img:hover {
   width: 100%;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 .icon-box .svg-color:hover {
   fill: gray;

@@ -26,6 +26,8 @@ function SigninForm() {
   };
 
   return (
+    <div className='page'>
+
     <div className='signin-container'>
       <h2>Sign In</h2>
       <form onSubmit={handleSubmit}>
@@ -54,6 +56,8 @@ function SigninForm() {
         <Link href={'/signup'}>Signup</Link>
       </div>
     </div>
+    </div>
+
   );
 }
 
