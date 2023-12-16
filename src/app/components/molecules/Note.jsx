@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useState, useContext } from 'react';
 import Image from 'next/image';
-import './Note.css';
 import NoteIcons from '../atoms/NoteIcons';
 import addIcon from '../atoms/img/addIcon.svg';
 import personaddIcon from '../atoms/img/personaddIcon.svg';
@@ -16,6 +15,7 @@ import NoteBigIcon from '../atoms/NoteBigIcon';
 import penIcon from '../atoms/img/penIcon.svg';
 import imageIcon from '../atoms/img/imgIcon.svg';
 import checkBoxIcon from '../atoms/img/checkBoxIcon.svg';
+import './Note.css';
 import {
   db,
   addDoc,
@@ -48,7 +48,7 @@ const Note = () => {
         return;
       } else {
         alert('Please Log In First');
-        // router.push('signin');
+        router.push('signin');
       }
     }
     setFormData({ title: '', description: '' });
@@ -72,7 +72,7 @@ const Note = () => {
     setEditingCard(card);
     setIsEditable(true);
   };
-  const handleSave = async () => {
+  const handleSave = async (id) => {
     if (editingCard) {
       const updatedNote = {
         // id: editingCard.id,

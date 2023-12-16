@@ -1,19 +1,22 @@
-import React from "react";
-import Image from "next/image";
-import lightbulbIcon from "./img/lightbulbIcon.svg";
-import style from "./SidebarIcons.css";
+import React, { useContext } from 'react';
+import Image from 'next/image';
+import './SidebarIcons.css';
+import { ContextKeep } from '@/app/context/ContextKeep';
 
-const SidebarIcons = ({ icon, text, altxtsideicon}) => {
+const SidebarIcons = ({ icon, text, altxtsideicon }) => {
+  const { toggleSideBar } = useContext(ContextKeep);
 
   return (
     <>
-      <div className="side-icons">
-        <div className="iconsCom">
-          <Image src={icon} alt={altxtsideicon}/>
+      <div className='side-icons'>
+        <div className='iconsCom'>
+          <Image src={icon} alt={altxtsideicon} />
         </div>
-        <div className="text">
-          <p>{text}</p>
-        </div>
+        {toggleSideBar && (
+          <div className='text'>
+            <p>{text}</p>
+          </div>
+        )}
       </div>
     </>
   );

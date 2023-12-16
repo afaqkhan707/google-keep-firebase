@@ -1,6 +1,8 @@
 .note {
   width: 100%;
   height: 200px;
+  display: flex;
+  align-items: center;
 }
 .take-note {
   border-radius: 8px;
@@ -37,13 +39,13 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  height: 40px;
-  width: 40px;
+  /* height: 40px; */
+  /* width: 40px; */
   border-radius: 50%;
   transition: opacity 0.218s ease-in;
   cursor: pointer;
-  margin: 0 8px;
-  padding: 3px;
+  /* margin: 0 8px; */
+  padding: 8px;
 }
 .second-block-icon:hover {
   opacity: 0.8;
@@ -85,8 +87,9 @@
   justify-content: space-between;
   align-items: center;
 }
-.output p {
-  padding: 5px 0px 20px 0px;
+.output p,
+.output h4 {
+  padding: 5px;
   word-wrap: break-word;
   text-wrap: wrap;
   width: 100%;
@@ -137,7 +140,6 @@
 }
 .form-edit {
   width: 400px;
-  /* height: 200px; */
   background-color: #e9eaea;
   padding: 30px;
   border-radius: 16px;

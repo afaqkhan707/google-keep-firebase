@@ -1,13 +1,12 @@
 .left-side-bar {
-  padding: 10px 0px;
-  width: 70px;
+  padding: 10px 0px 0px 0px;
+  max-width: 95px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
-  height: calc(100vh - 70px);
-  z-index: 0px;
-  overflow: hidden;
+  flex-grow: 1;
+  transition: all 0.5s;
+  cursor: pointer;
 }
 .left-side-bar .license p {
   padding: 10px 15px;
@@ -15,13 +14,4 @@
   font-style: italic;
   color: #333;
   text-align: center;
-}
-.left-side-bar:hover {
-  width: 280px;
-  transition: all 0.4s;
-  box-shadow: 0px 0px 14px -9px #000;
-  position: relative;
-}
-.license p:hover {
-  display: block;
 }

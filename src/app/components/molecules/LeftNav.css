@@ -6,6 +6,9 @@
   gap: 10px;
   cursor: pointer;
 }
+.left-side-bar {
+  transition: all 0.3s;
+}
 .LeftSideBar h3 {
   text-decoration: none;
   color: #5f6368;

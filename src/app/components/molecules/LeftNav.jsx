@@ -6,10 +6,10 @@ import { useContext, useState } from 'react';
 import { ContextKeep } from '@/app/context/ContextKeep';
 
 const LeftNav = () => {
-  const { setToggleSideBar } = useContext(ContextKeep);
+  const { toggleSideBar, setToggleSideBar } = useContext(ContextKeep);
 
   const toggleLeftSideBar = () => {
-    setToggleSideBar(true);
+    setToggleSideBar(!toggleSideBar);
   };
   return (
     <>
