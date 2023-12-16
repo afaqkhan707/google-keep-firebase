@@ -21,7 +21,8 @@ const Sidebar = () => {
         style={
           toggleSideBar
             ? {
-                maxWidth: '280px',
+                minWidth: '280px',
+                maxWidth: '281px',
                 boxShadow: '0px 0px 14px -9px #000',
                 transition: 'all 0.5s',
               }

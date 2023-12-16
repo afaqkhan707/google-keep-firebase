@@ -13,7 +13,7 @@ import { usersContext } from '@/app/controllers/UsersStore.jsx';
 import './NavbarRightSide.css';
 
 const NavbarRightSide = () => {
-  const { user, notesList } = useContext(usersContext);
+  const { user, totalNotes } = useContext(usersContext);
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -28,11 +28,10 @@ const NavbarRightSide = () => {
   const handleRefreshClick = () => {
     window.location.reload();
   };
-
   return (
     <>
       <div className='navbar-right-side'>
-        <span>{user?.notesList}</span>
+        <span className='total-notes'>{totalNotes}</span>
         <HeaderIcon
           icon={refreshIcon}
           title='Refresh'
