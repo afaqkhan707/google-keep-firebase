@@ -8,9 +8,9 @@ import appsIcon from '../atoms/img/appsIcon.svg';
 import { auth } from '../../firebase/firebaseConfig';
 import { useRouter } from 'next/router';
 import ProfileDropDown from '../atoms/ProfileDropDown';
-import './NavbarRightSide.css';
 import Link from 'next/link';
 import { usersContext } from '@/app/controllers/UsersStore.jsx';
+import './NavbarRightSide.css';
 
 const NavbarRightSide = () => {
   const { user, notesList } = useContext(usersContext);

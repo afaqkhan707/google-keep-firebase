@@ -3,6 +3,7 @@ import Navbar from '@/app/components/organisims/Navbar';
 import '../src/app/components/organisims/MainSection.css';
 import UsersStore from '@/app/controllers/UsersStore';
 import Head from 'next/head';
+import ContextKeepProvider from '@/app/context/ContextKeep';
 
 export default function Home() {
   return (
@@ -11,10 +12,12 @@ export default function Home() {
         <title>Home</title>
       </Head>
       <div className='home'>
-        <UsersStore>
-          <Navbar />
-          <MainSection />
-        </UsersStore>
+        <ContextKeepProvider>
+          <UsersStore>
+            <Navbar />
+            <MainSection />
+          </UsersStore>
+        </ContextKeepProvider>
       </div>
     </>
   );

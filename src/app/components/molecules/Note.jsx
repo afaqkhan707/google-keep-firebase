@@ -48,7 +48,7 @@ const Note = () => {
         return;
       } else {
         alert('Please Log In First');
-        router.push('signin');
+        // router.push('signin');
       }
     }
     setFormData({ title: '', description: '' });
@@ -66,9 +66,11 @@ const Note = () => {
     setShowContent(false);
   };
   const [editingCard, setEditingCard] = useState(null);
+  const [isEditable, setIsEditable] = useState(false);
 
   const handleEdit = (card) => {
     setEditingCard(card);
+    setIsEditable(true);
   };
   const handleSave = async () => {
     if (editingCard) {
@@ -83,6 +85,9 @@ const Note = () => {
       setEditingCard(null);
       setFormData({ title: '', description: '' });
     }
+  };
+  const EditCancel = () => {
+    setIsEditable(false);
   };
 
   return (
@@ -156,7 +161,7 @@ const Note = () => {
             <div key={index} className='output'>
               <h4>{item.title}</h4>
               <p>{item.description}</p>
-              <button type='button' onClick={() => handleEdit(item)}>
+              <button className='edit-btn' onClick={() => handleEdit(item)}>
                 Edit
               </button>
               <div className='taken-note-icons'>
@@ -178,22 +183,26 @@ const Note = () => {
       )}
       {/* Edit form */}
       {editingCard && (
-        <div className='edit-form'>
-          <input
-            name='title'
-            type='text'
-            onChange={handleChange}
-            value={formData.title}
-            placeholder='Title'
-          />
-          <input
-            name='description'
-            type='text'
-            onChange={handleChange}
-            value={formData.description}
-            placeholder='Description'
-          />
-          <button onClick={handleSave}>Save</button>
+        <div className='edit-form' onClick={EditCancel}>
+          <div className='form-edit'>
+            <input
+              name='title'
+              type='text'
+              onChange={handleChange}
+              value={formData.title}
+              placeholder='Title'
+            />
+            <input
+              name='description'
+              type='text'
+              onChange={handleChange}
+              value={formData.description}
+              placeholder='Description'
+            />
+            <button onClick={handleSave} className='edit-btn'>
+              Save
+            </button>
+          </div>
         </div>
       )}
     </>
