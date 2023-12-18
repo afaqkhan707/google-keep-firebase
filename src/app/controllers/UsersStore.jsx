@@ -66,7 +66,7 @@ const UsersStore = ({ children }) => {
     setTotalNotes(cards.length);
   }, [cards, user]);
   return (
-    <usersContext.Provider value={{ user, setUser, cards, totalNotes }}>
+    <usersContext.Provider value={{ user, setUser, cards,setCards, totalNotes }}>
       {children}
     </usersContext.Provider>
   );

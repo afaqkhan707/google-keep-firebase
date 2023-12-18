@@ -39,12 +39,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  /* height: 40px; */
-  /* width: 40px; */
   border-radius: 50%;
   transition: opacity 0.218s ease-in;
   cursor: pointer;
-  /* margin: 0 8px; */
   padding: 8px;
 }
 .second-block-icon:hover {
@@ -69,6 +66,7 @@
 .iconCom {
   display: flex;
 }
+
 .taken-note-icons {
   display: flex;
   justify-content: center;
@@ -111,9 +109,21 @@
 }
 .card {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   place-items: center;
   row-gap: 10px;
+}
+
+@media (max-width: 1200px) {
+  .card {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 660px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
 }
 
 .edit-form {

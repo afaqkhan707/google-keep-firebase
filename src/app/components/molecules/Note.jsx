@@ -29,9 +29,10 @@ import { useRouter } from 'next/router';
 
 const Note = () => {
   const router = useRouter();
-  const { user, cards } = useContext(usersContext);
+  const { user, cards, setCards } = useContext(usersContext);
   const [formData, setFormData] = useState({ title: '', description: '' });
   const [showContent, setShowContent] = useState(false);
+  const [showFullDescription, setShowFullDescription] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -88,6 +89,19 @@ const Note = () => {
   };
   const EditCancel = () => {
     setIsEditable(false);
+  };
+
+  const handleClick = (index) => {
+    const updatedCards = cards.map((item, i) => {
+      return {
+        ...item,
+        showFullDescription:
+          i === index ? !item.showFullDescription : item.showFullDescription,
+      };
+    });
+
+    setShowFullDescription(!showFullDescription);
+    setCards(updatedCards);
   };
 
   return (
@@ -160,7 +174,11 @@ const Note = () => {
           {cards.map((item, index) => (
             <div key={index} className='output'>
               <h4>{item.title}</h4>
-              <p>{item.description}</p>
+              <p>{item.description.slice(0, 80)}...</p>
+              {showFullDescription && <p>{item.description}</p>}
+              <button onClick={() => handleClick(index)} className='edit-btn'>
+                {showFullDescription ? 'Hide Description' : 'Read More'}
+              </button>
               <button className='edit-btn' onClick={() => handleEdit(item)}>
                 Edit
               </button>
